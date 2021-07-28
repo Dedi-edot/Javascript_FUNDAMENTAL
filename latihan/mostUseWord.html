@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Most Use Word</title>
+  </head>
+  <body>
+    <h1>MOST USE WORD</h1>
+    <fieldset>
+      <legend>Your Sentence</legend>
+      <input type="text" id="inputSentence" style="width: 100%" />
+      <br />
+      <button onclick="mostUseWord()">Find Most Use Word</button>
+    </fieldset>
+    <fieldset>
+      <legend>Result</legend>
+      <p id="result"></p>
+    </fieldset>
+  </body>
+  <script>
+    const mostUseWord = () => {
+      const sentence = document
+        .getElementById("inputSentence")
+        .value.toLowerCase();
+      let splitSentence = sentence.split(" ");
+      let mode = {};
+      let maxEl = "";
+      let maxCount = 1;
+      for (let i = 0; i < splitSentence.length; i++) {
+        let el = splitSentence[i];
+        if (mode[el] == null) {
+          mode[el] = 1;
+        } else {
+          mode[el]++;
+        }
+
+        if (mode[el] > maxCount) {
+          maxEl = el;
+          maxCount = mode[el];
+        }
+      }
+      document.getElementById(
+        "result"
+      ).innerText = `The most use word is ${maxEl} with a total of ${maxCount} count`;
+    };
+  </script>
+</html>
